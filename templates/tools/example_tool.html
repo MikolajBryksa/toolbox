@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Example Tool - PyGround{% endblock %}
+
+{% block content %}
+<div class="tool-page">
+    <h2>Example Tool</h2>
+    
+    <div class="tool-content">
+        <p>This is an example tool that demonstrates how tools are structured in PyGround.</p>
+        
+        <div class="feature-box">
+            <h3>How It Works</h3>
+            <ul>
+                <li>Each tool lives in its own folder under <code>tools/</code></li>
+                <li>Tools register themselves with the Flask app</li>
+                <li>Tools provide their own routes and templates</li>
+                <li>Tools appear automatically on the home page</li>
+            </ul>
+        </div>
+        
+        <div class="feature-box">
+            <h3>Example Features</h3>
+            <p>This tool could do anything you want - calculations, data processing, API integrations, games, utilities, etc.</p>
+            <div class="example-demo">
+                <p><strong>Demo:</strong> 2 + 2 = 4</p>
+                <p><strong>Status:</strong> ✅ Tool is working correctly!</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="back-link">
+        <a href="/" class="btn">← Back to Home</a>
+    </div>
+</div>
+{% endblock %}
