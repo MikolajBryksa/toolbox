@@ -166,6 +166,22 @@ Your new tool will now appear on the home page!
 - Add appropriate error handling in your tools
 - Test your tool thoroughly before committing
 
+## Production Deployment
+
+⚠️ **Important**: This application is configured for development purposes. For production deployment:
+
+1. **Disable Debug Mode**: Set `debug=False` in `app.py`
+2. **Use a Production Server**: Use a WSGI server like `gunicorn` or `uWSGI` instead of Flask's built-in server
+3. **Set Secret Key**: Configure a secure secret key using environment variables
+4. **Configure Host**: Restrict the host binding as appropriate for your deployment
+5. **Use HTTPS**: Always use HTTPS in production environments
+
+Example production setup with gunicorn:
+```bash
+pip install gunicorn
+gunicorn -w 4 -b 0.0.0.0:8000 app:app
+```
+
 ## Contributing
 
 Feel free to add your own tools and experiments!
