@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Home - PyGround{% endblock %}
+
+{% block content %}
+<div class="welcome">
+    <h2>Welcome to PyGround! 👋</h2>
+    <p>This is a collection of various tools and features built as practice exercises.</p>
+    <p>Each tool is independent and demonstrates different concepts and techniques.</p>
+</div>
+
+<div class="tools-section">
+    <h3>Available Tools</h3>
+    
+    {% if tools %}
+    <div class="tools-grid">
+        {% for tool in tools %}
+        <div class="tool-card">
+            <h4>{{ tool.name }}</h4>
+            <p>{{ tool.description }}</p>
+            <a href="{{ tool.url }}" class="btn">Open Tool →</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-tools">No tools available yet. Start building!</p>
+    {% endif %}
+</div>
+
+<div class="info-section">
+    <h3>About This Project</h3>
+    <p>PyGround is designed to be easily extensible. Each tool lives in its own folder under <code>tools/</code> and can be developed independently.</p>
+</div>
+{% endblock %}
