@@ -1,191 +1,158 @@
-# PyGround 🐍
+# Python Playground
 
-A modular Flask-based web application for practicing and showcasing various Python tools and features. Each tool is independent and lives in its own directory, making it easy to add new functionalities.
+A modular web application designed for practicing and showcasing various Python tools and features. Each tool is independent and lives in its own directory, making it easy to add new functionalities and experiment with different Python concepts. The application provides a clean interface for accessing multiple tools from a single platform.
+
+## Tech Stack
+
+- **Python** 3.7 or higher
+- **Flask** web framework
+- **HTML/CSS** for frontend templates
 
 ## Features
 
-- 🎯 **Modular Design**: Each tool is independent and self-contained
-- 🔧 **Easy to Extend**: Simple structure for adding new tools
-- 🎨 **Clean UI**: Responsive design with a modern interface
-- 📦 **Organized Structure**: Clear separation of concerns
+- Modular design with independent and self-contained tools
+- Simple structure for adding new tools
+- Responsive design with a modern interface
+- Clear separation of concerns with organized project structure
+- Tool registration system for easy integration
+- Base template system for consistent UI across tools
 
-## Quick Start
+## Setup
 
-### Prerequisites
+### Requirements
 
-- Python 3.7 or higher
-- pip
+Before you begin, ensure you have met the following requirements:
+
+- **Python**: 3.7 or higher
+
+  ```
+  python --version
+  ```
+
+- **pip**: Latest version
+
+  ```
+  pip --version
+  ```
 
 ### Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/MikolajBryksa/pyground.git
-cd pyground
-```
+- **Clone the repository**:
 
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+  ```
+  git clone https://github.com/MikolajBryksa/pyground.git
+  ```
 
-3. Run the application:
-```bash
-python app.py
-```
+- **Navigate to the project directory**:
 
-4. Open your browser and navigate to:
-```
-http://localhost:5000
-```
+  ```
+  cd pyground
+  ```
 
-## Project Structure
+- **Install dependencies**:
 
-```
-pyground/
-├── app.py                 # Main Flask application
-├── requirements.txt       # Python dependencies
-├── tools/                 # All tools directory
-│   ├── __init__.py       # Tools registration
-│   └── example_tool/     # Example tool
-│       └── __init__.py
-├── templates/            # HTML templates
-│   ├── base.html        # Base template
-│   ├── home.html        # Home page
-│   └── tools/           # Tool-specific templates
-│       └── example_tool.html
-└── static/              # Static files
-    └── css/
-        └── style.css    # Main stylesheet
-```
+  ```
+  pip install -r requirements.txt
+  ```
 
-## Adding a New Tool
+### Launch
 
-Follow these steps to add a new tool to PyGround:
+- **Run the application**:
 
-### 1. Create a new tool directory
+  ```
+  python app.py
+  ```
 
-Create a new folder under `tools/` with your tool name:
+- **Open your browser and navigate to**:
 
-```bash
-mkdir tools/my_new_tool
-```
+  ```
+  http://localhost:5000
+  ```
 
-### 2. Create the tool module
+## Development
 
-Create `tools/my_new_tool/__init__.py`:
+- **Create tool directory**:
 
-```python
-"""
-My New Tool - Description of what it does.
-"""
-from flask import Flask, render_template
+  ```
+  mkdir tools/my_new_tool
+  ```
+
+- **Create the tool module**:
+
+  Create `tools/my_new_tool/__init__.py`:
+
+  ```python
+  """
+  My New Tool - Description of what it does.
+  """
+  from flask import Flask, render_template
 
 
-def register_my_new_tool(app: Flask) -> dict:
-    """
-    Register the tool with the Flask app.
-    
-    Args:
-        app: Flask application instance
-        
-    Returns:
-        Dictionary with tool information
-    """
-    
-    @app.route('/tools/my-new-tool')
-    def my_new_tool():
-        """My new tool page."""
-        return render_template('tools/my_new_tool.html')
-    
-    return {
-        'name': 'My New Tool',
-        'description': 'A brief description of what the tool does',
-        'url': '/tools/my-new-tool'
-    }
-```
+  def register_my_new_tool(app: Flask) -> dict:
+      """
+      Register the tool with the Flask app.
 
-### 3. Create the tool template
+      Args:
+          app: Flask application instance
 
-Create `templates/tools/my_new_tool.html`:
+      Returns:
+          Dictionary with tool information
+      """
 
-```html
-{% extends "base.html" %}
+      @app.route('/tools/my-new-tool')
+      def my_new_tool():
+          """My new tool page."""
+          return render_template('tools/my_new_tool.html')
 
-{% block title %}My New Tool - PyGround{% endblock %}
+      return {
+          'name': 'My New Tool',
+          'description': 'A brief description of what the tool does',
+          'url': '/tools/my-new-tool'
+      }
+  ```
 
-{% block content %}
-<div class="tool-page">
+- **Create the tool template**:
+
+  Create `templates/tools/my_new_tool.html`:
+
+  ```html
+  {% extends "base.html" %} {% block title %}My New Tool - PyGround{% endblock
+  %} {% block content %}
+  <div class="tool-page">
     <h2>My New Tool</h2>
-    
+
     <div class="tool-content">
-        <!-- Your tool's content goes here -->
-        <p>Welcome to my new tool!</p>
+      <!-- Your tool's content goes here -->
+      <p>Welcome to my new tool!</p>
     </div>
-    
+
     <div class="back-link">
-        <a href="/" class="btn">← Back to Home</a>
+      <a href="/" class="btn">← Back to Home</a>
     </div>
-</div>
-{% endblock %}
-```
+  </div>
+  {% endblock %}
+  ```
 
-### 4. Register the tool
+- **Register the tool**:
 
-Edit `tools/__init__.py` and add your tool to the registration:
+  Edit `tools/__init__.py`:
 
-```python
-def register_tools(app: Flask) -> List[Dict[str, str]]:
-    tools = []
-    
-    # ... existing tools ...
-    
-    # Add your new tool
-    from tools.my_new_tool import register_my_new_tool
-    my_tool_info = register_my_new_tool(app)
-    tools.append(my_tool_info)
-    
-    return tools
-```
+  ```python
+  def register_tools(app: Flask) -> List[Dict[str, str]]:
+      tools = []
 
-### 5. Restart the application
+      # ... existing tools ...
 
-Stop the Flask server (Ctrl+C) and run it again:
+      # Add your new tool
+      from tools.my_new_tool import register_my_new_tool
+      my_tool_info = register_my_new_tool(app)
+      tools.append(my_tool_info)
 
-```bash
-python app.py
-```
+      return tools
+  ```
 
-Your new tool will now appear on the home page!
+- **Restart the application**:
 
-## Development Tips
-
-- Each tool should be self-contained and independent
-- Use descriptive names for your tools
-- Follow the existing code structure for consistency
-- Add appropriate error handling in your tools
-- Test your tool thoroughly before committing
-
-## Production Deployment
-
-⚠️ **Important**: This application is configured for development purposes. For production deployment:
-
-1. **Disable Debug Mode**: Set `debug=False` in `app.py`
-2. **Use a Production Server**: Use a WSGI server like `gunicorn` or `uWSGI` instead of Flask's built-in server
-3. **Set Secret Key**: Configure a secure secret key using environment variables
-4. **Configure Host**: Restrict the host binding as appropriate for your deployment
-5. **Use HTTPS**: Always use HTTPS in production environments
-
-Example production setup with gunicorn:
-```bash
-pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:8000 app:app
-```
-
-## Contributing
-
-Feel free to add your own tools and experiments!
-
-## License
-
-This project is for educational and practice purposes.
+  ```
+  Stop the Flask server with Ctrl+C and run python app.py again
+  ```
