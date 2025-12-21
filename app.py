@@ -1,6 +1,7 @@
 """
 Main Flask application for PyGround - a collection of practice tools.
 """
+import os
 from flask import Flask, render_template
 from tools import register_tools
 
