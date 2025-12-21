@@ -28,8 +28,12 @@
     
     <footer>
         <div class="container">
-            <p>&copy; 2024 PyGround - Built with Flask & Python</p>
+            <p>&copy; <span id="year"></span> PyGround - Built with Flask & Python</p>
         </div>
     </footer>
+    
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
