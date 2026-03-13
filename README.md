@@ -1,4 +1,4 @@
-# Python Playground
+# Toolbox
 
 A modular web application designed for practicing and showcasing various Python tools and features. Each tool is independent and lives in its own directory, making it easy to add new functionalities and experiment with different Python concepts. The application provides a clean interface for accessing multiple tools from a single platform.
 
